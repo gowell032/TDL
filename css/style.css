@@ -1,0 +1,145 @@
+/* dark mode */
+
+.night-icon {
+    margin: 10px;
+    border-style: none;
+    background-color: #202124;
+    color: #ffff;
+    cursor: pointer;
+    transition: color 1s ease-in-out;
+}
+.night{
+    background-color: #202124;
+    color: #ffff;
+}
+.night-search-box {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.8px solid #5f6367;
+    border-radius: 20px;
+    width: 40%;
+    height: 30px;
+}
+.nightTodoInput {
+    background-color: #202124;
+    color: #ffff;
+    width: calc(100% - 60px);
+    border-style: none;
+}
+.nightTodoInput:focus {
+    outline: none;
+}
+.night-todoBtn-border {
+    width: 50px;
+    padding: 5px;
+    border-left: 1.8px solid #5f6367;
+    cursor: pointer;
+}
+.night-add {
+    color: #5f6367;
+    margin-left: 8px;
+}
+.night-itemDel {
+    color: #5f6367;
+    border-style: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+/* day mode */
+
+.day-icon {
+    margin: 10px;
+    border-style: none;
+    background-color: #ffff;
+    color: #202124;
+    cursor: pointer;
+    transition: color 1s ease-in-out;
+}
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.body-title {
+    display: flex;
+    gap: 5px;
+    font-size: 70px;
+    font-family: 'Cabin', sans-serif;
+    font-weight: bold;
+    margin: 30px;
+}
+.body-title :nth-child(1) {
+    color: #186dee;
+}
+.body-title :nth-child(2) {
+    color: #d5412d;
+}
+.body-title :nth-child(3) {
+    color: #ffb503;
+}
+.body-title :nth-child(4) {
+    color: #1d71ef;
+}
+.body-title :nth-child(5) {
+    color: #109b58 ;
+}
+.body-title :nth-child(6) {
+    color: #d8432e;
+}
+.body-title :nth-child(7) {
+    color: #186dee ;
+}
+.body-title :nth-child(8) {
+    color: #d5412d;
+}
+.search-box {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.8px solid black;
+    border-radius: 20px;
+    width: 40%;
+    height: 30px;
+}
+.todoInput {
+    width: calc(100% - 60px);
+    border-style: none;
+}
+.todoInput:focus {
+    outline: none;
+}
+.add {
+    margin-left: 8px;
+}
+.todoBtn {
+    border-style: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.todoBtn-border {
+    width: 50px;
+    padding: 5px;
+    border-left: 1.8px solid black;
+    cursor: pointer;
+}
+.items {
+    padding: 0;
+}
+.item {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.itemDel {
+    border-style: none;
+    background-color: transparent;
+    cursor: pointer;
+}
