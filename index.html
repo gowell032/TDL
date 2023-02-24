@@ -17,7 +17,16 @@
         <span class="material-symbols-outlined">dark_mode</span>
     </button>
 
-    <div class="container">
+<!-- Login -->
+    <form id="username-form">
+        <input type="text" placeholder="What is your name?" >
+        <button type="submit">Log in</button>
+    </form>
+
+<!-- 위치 이동 예정 -->
+    <h1 id="user-name"></h1>
+
+    <div id="container" class="hidden-container">
         <div class="body-title">
             <span>T</span>
             <span>o</span>
@@ -29,6 +38,7 @@
             <span>t</span>
         </div>
 
+<!-- div를 form으로 바꾸기 -->
         <div class="search-box">
             <input type="text" placeholder="오늘 할 일을 입력하세요" class="todoInput">
             <div class="todoBtn-border">

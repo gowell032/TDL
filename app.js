@@ -1,12 +1,17 @@
-// itemDel css 만지다 놨음
 const changeMode = document.getElementById('change-mode-btn');
-const SearchBox = document.querySelector('.search-box');
-const todoBtnBorder = document.querySelector('.todoBtn-border')
-const addBtn = document.querySelector('.add')
+const searchBox = document.querySelector('.search-box');
+const todoBtnBorder = document.querySelector('.todoBtn-border');
+const addBtn = document.querySelector('.add');
 
 const todoInput = document.querySelector('.todoInput');
 const todoBtn = document.querySelector('.todoBtn');
-const items = document.querySelector('.items')
+const items = document.querySelector('.items');
+
+const container = document.getElementById('container');
+const userNameForm = document.getElementById('username-form');
+const userNameInput = document.querySelector('#username-form input');
+const userNameBtn = document.querySelector('#username-form button')
+const userNames = document.getElementById('user-name')
 
 function inputReset() {
     todoInput.value = '';
@@ -25,10 +30,10 @@ function handleNightMode() {
         changeMode.innerHTML = '<span class="material-symbols-outlined">dark_mode</span>'
     }
 
-    if(SearchBox.className === 'search-box') {
-        SearchBox.className = 'night-search-box'
+    if(searchBox.className === 'search-box') {
+        searchBox.className = 'night-search-box'
     }else {
-        SearchBox.className = 'search-box'
+        searchBox.className = 'search-box'
     }
 
     if(todoInput.className === 'todoInput') {
@@ -53,7 +58,7 @@ function handleNightMode() {
 changeMode.addEventListener('click', handleNightMode);
 
 
-// 댓글 추가 삭제
+// local storage 추가
 function onAdd() {
     const text = todoInput.value;
 
@@ -64,29 +69,28 @@ function onAdd() {
     itemText.innerText = text;
 
     const itemDel = document.createElement('button');
-    if(document.body.className === 'night'){
-        itemDel.setAttribute('class', 'night-itemDel')
-    } else {
-        itemDel.setAttribute('class', 'itemDel')
-    }
+
+    // day,night에 따른 setAttribute 조건부로 주기
+    const bodyClassName = document.body.className
+    
+    bodyClassName === 'night' ? 
+    itemDel.setAttribute('class', 'night-itemDel') : itemDel.setAttribute('class', 'itemDel')
 
     itemDel.innerHTML = '<span class="material-symbols-outlined">do_not_disturb_on</span>';
     itemDel.addEventListener('click', ()=> {
         items.removeChild(item);
     });
 
+    changeMode.addEventListener('click', ()=>{
+        const bodyClassName = document.body.className
+
+        bodyClassName === 'night' ? 
+        itemDel.className = 'night-itemDel' : itemDel.className = 'itemDel'
+    })
+
     item.appendChild(itemText);
     item.appendChild(itemDel);
     items.appendChild(item);
-
-    changeMode.addEventListener('click', ()=>{
-        console.log(document.body.className)
-        if(document.body.className === 'night') {
-            itemDel.className = 'night-itemDel'
-        }else {
-            itemDel.className = 'itemDel'
-        }
-    })
 };
 
 todoBtn.addEventListener('click', ()=> {
@@ -100,3 +104,14 @@ todoInput.addEventListener('keydown', (e) => {
         inputReset()
     }
 });
+
+function handleUserName(event) {
+    event.preventDefault();
+    const userName = userNameInput.value;
+    userNameForm.classList.add('hidden-container')
+
+    container.classList.toggle('container')
+    userNames.innerText = userName;
+};
+
+userNameBtn.addEventListener('click', handleUserName);
