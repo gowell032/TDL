@@ -10,12 +10,11 @@ const items = document.querySelector('.items');
 const container = document.getElementById('container');
 const userNameForm = document.getElementById('username-form');
 const userNameInput = document.querySelector('#username-form input');
-const userNameBtn = document.querySelector('#username-form button')
-const userNames = document.getElementById('user-name')
+const userNameBtn = document.querySelector('#username-form button');
+const userNames = document.getElementById('user-name');
 
-function inputReset() {
-    todoInput.value = '';
-}
+const TODOS_KEY = 'todos';
+const todosArr = [];
 
 // 주,야간 모드
 function handleNightMode() {
@@ -57,16 +56,12 @@ function handleNightMode() {
 
 changeMode.addEventListener('click', handleNightMode);
 
-
-// local storage 추가
-function onAdd() {
-    const text = todoInput.value;
-
+function paintTodos(todos) {
     const item = document.createElement('li');
     item.setAttribute('class', 'item');
 
     const itemText = document.createElement('span');
-    itemText.innerText = text;
+    itemText.innerText = todos;
 
     const itemDel = document.createElement('button');
 
@@ -93,25 +88,30 @@ function onAdd() {
     items.appendChild(item);
 };
 
-todoBtn.addEventListener('click', ()=> {
-    onAdd()
-    inputReset()
-});
+function saveTodos() {
+    localStorage.setItem('TODOS_KEY', JSON.stringify(todosArr));
+}
 
-todoInput.addEventListener('keydown', (e) => {
-    if (e.keyCode === 13) {
-        onAdd()
-        inputReset()
-    }
-});
-
-function handleUserName(event) {
+// local storage 추가
+function onAdd() {
     event.preventDefault();
-    const userName = userNameInput.value;
-    userNameForm.classList.add('hidden-container')
+    const todos = todoInput.value;
+    todosArr.push(todos);
+    todoInput.value = '';
 
-    container.classList.toggle('container')
-    userNames.innerText = userName;
+    paintTodos(todos);
+    saveTodos();
 };
 
-userNameBtn.addEventListener('click', handleUserName);
+// local storage에 저장된 todos 페인팅 
+
+const savedTodos = localStorage.getItem('TODOS_KEY');
+
+searchBox.addEventListener('submit', (event)=> {
+    onAdd(event)
+});
+
+if(savedTodos !== null) {
+    const parsedTodos = JSON.parse(savedTodos);
+    parsedTodos.forEach(paintTodos);
+}
