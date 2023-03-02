@@ -14,7 +14,7 @@ const userNameBtn = document.querySelector('#username-form button');
 const userNames = document.getElementById('user-name');
 
 const TODOS_KEY = 'todos';
-const todosArr = [];
+let todosArr = [];
 
 // 주,야간 모드
 function handleNightMode() {
@@ -56,12 +56,13 @@ function handleNightMode() {
 
 changeMode.addEventListener('click', handleNightMode);
 
-function paintTodos(todos) {
+function paintTodos(newTodoObj) {
     const item = document.createElement('li');
+    item.id = newTodoObj.id
     item.setAttribute('class', 'item');
 
     const itemText = document.createElement('span');
-    itemText.innerText = todos;
+    itemText.innerText = newTodoObj.text;
 
     const itemDel = document.createElement('button');
 
@@ -74,6 +75,8 @@ function paintTodos(todos) {
     itemDel.innerHTML = '<span class="material-symbols-outlined">do_not_disturb_on</span>';
     itemDel.addEventListener('click', ()=> {
         items.removeChild(item);
+        todosArr = todosArr.filter((todo) => todo.id !== parseInt(item.id));
+        saveTodos();
     });
 
     changeMode.addEventListener('click', ()=>{
@@ -93,13 +96,17 @@ function saveTodos() {
 }
 
 // local storage 추가
-function onAdd() {
+function onAdd(event) {
     event.preventDefault();
     const todos = todoInput.value;
-    todosArr.push(todos);
     todoInput.value = '';
+    const newTodoObj = {
+        id: Date.now(),
+        text: todos
+    };
+    todosArr.push(newTodoObj);
 
-    paintTodos(todos);
+    paintTodos(newTodoObj);
     saveTodos();
 };
 
@@ -113,5 +120,6 @@ searchBox.addEventListener('submit', (event)=> {
 
 if(savedTodos !== null) {
     const parsedTodos = JSON.parse(savedTodos);
+    todosArr = parsedTodos;
     parsedTodos.forEach(paintTodos);
 }
