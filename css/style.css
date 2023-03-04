@@ -11,6 +11,7 @@
     color: #ffff;
 }
 .night-search-box {
+    margin-bottom: 5px;
     padding: 5px;
     display: flex;
     align-items: center;
@@ -113,6 +114,7 @@
     color: #d5412d;
 }
 .search-box {
+    margin-bottom: 5px;
     padding: 5px;
     display: flex;
     align-items: center;
