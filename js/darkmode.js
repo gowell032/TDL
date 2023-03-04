@@ -6,7 +6,6 @@ const todoInput = document.querySelector('.todoInput');
 
 const title = document.querySelector('.body-title')
 
-// 주,야간 모드
 function handleNightMode() {
     document.body.classList.toggle('night');
 

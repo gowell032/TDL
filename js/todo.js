@@ -14,7 +14,6 @@ function paintTodos(newTodoObj) {
 
     const itemDel = document.createElement('button');
 
-    // day,night에 따른 setAttribute 조건부로 주기
     const bodyClassName = document.body.className
     
     bodyClassName === 'night' ? 
@@ -43,7 +42,6 @@ function saveTodos() {
     localStorage.setItem('TODOS_KEY', JSON.stringify(todosArr));
 }
 
-// local storage 추가
 function onAdd(event) {
     event.preventDefault();
     const todos = todoInput.value;
@@ -57,8 +55,6 @@ function onAdd(event) {
     paintTodos(newTodoObj);
     saveTodos();
 };
-
-// local storage에 저장된 todos 페인팅 
 
 const savedTodos = localStorage.getItem('TODOS_KEY');
 
