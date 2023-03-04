@@ -58,7 +58,7 @@ changeMode.addEventListener('click', handleNightMode);
 
 function paintTodos(newTodoObj) {
     const item = document.createElement('li');
-    item.id = newTodoObj.id
+    item.id = newTodoObj.id;
     item.setAttribute('class', 'item');
 
     const itemText = document.createElement('span');
